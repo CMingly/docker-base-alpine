@@ -4,6 +4,12 @@ services:
     restart: unless-stopped
     build: .
     environment:
-      - TZ=Europe/Copenhagen
+      - C_USER=app
+      - C_UID=1000
+      - C_GROUP=app
+      - C_GID=1000
+      - C_HOME=/app
+      - C_CUSTOMSCRIPTS_PATH=/etc/custom-scripts
+      - C_TIMEZONE=Europe/Copenhagen
     volumes:
-      - ./config:/mnt/config
+      - ./custom-scripts:/etc/custom-scripts
