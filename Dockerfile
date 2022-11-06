@@ -12,7 +12,7 @@ ENV C_CUSTOMSCRIPTS_PATH=/etc/custom-scripts
 ENV C_TIMEZONE=Europe/Copenhagen
 
 # Set timezone
-RUN apk add tzdata
+RUN apk add -U --update --no-cache tzdata
 RUN cp /usr/share/zoneinfo/${C_TIMEZONE} /etc/localtime
 RUN apk del tzdata
 RUN echo ${C_TIMEZONE} > /etc/timezone
@@ -25,7 +25,7 @@ RUN chown -R ${C_UID}:${C_GID} ${C_HOME}
 
 RUN rm -rf /tmp/*
 
-RUN mkdir -p ${C_CUSTOMSCRIPTS_PATH} && chown -R 1000:1000 ${C_CUSTOMSCRIPTS_PATH}
+RUN mkdir -p ${C_CUSTOMSCRIPTS_PATH} && chown -R ${C_UID}:${C_GID} ${C_CUSTOMSCRIPTS_PATH}
 
 USER app
 WORKDIR ${C_HOME}
