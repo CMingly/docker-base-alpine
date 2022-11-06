@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  app:
+    restart: unless-stopped
+    build: .
+    environment:
+      - TZ=Europe/Copenhagen
+    volumes:
+      - ./config:/mnt/config
